@@ -156,6 +156,7 @@ def win_conditioner():
     win_con_seven = [board[0][0], board[1][1], board[2][2]]
     win_con_eight = [board[0][2], board[1][1], board[2][0]]
 
+    #Gives out False value if a winning pattern has all X which would X won
     x1 = any(i != j for i, j in zip(X, win_con_one))
     x2 = any(i != j for i, j in zip(X, win_con_two))
     x3 = any(i != j for i, j in zip(X, win_con_three))
