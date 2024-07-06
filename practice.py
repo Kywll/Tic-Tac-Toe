@@ -144,7 +144,7 @@ def bot():
 X = ['X', 'X', 'X']
 O = ['O', 'O', 'O']
 
-#'''
+
 def win_conditioner():
     global game_over
     win_con_one = [board[0][0], board[0][1], board[0][2]]
@@ -180,20 +180,62 @@ def win_conditioner():
     elif o1 == False or o2 == False or o3 == False or o4 == False or o5 == False or o6 == False or o7 == False or o8 == False:
         print("O WON")
         game_over = True
-#'''
+
         
 while game_over == False:
     if versus_bot == False:
         x_input = int(input("Player X Input: "))
         while x_input not in available_choices:
              x_input = int(input("Option already taken, try another: "))
-        o_input = int(input("Player O Input: "))
-        while o_input not in available_choices:
-             o_input = int(input("Option already taken, try another: "))
-    
+             
+        match_input(x_input, 1)
 
-    match_input(x_input, 1)
-    match_input(o_input, 0)
+        win_conditioner()
+        
+        if game_over == False:
+            o_input = int(input("Player O Input: "))
+
+            while o_input not in available_choices and game_over == False:
+                o_input = int(input("Option already taken, try another: "))
+                
+        match_input(o_input, 0)
+    
+        win_conditioner()
+
+    elif versus_bot == True:
+        if player_side == 'X':
+            x_input = int(input("Player X Input: "))
+            while x_input not in available_choices:
+                x_input = int(input("Option already taken, try another: "))
+
+            match_input(x_input, 1)
+            win_conditioner()
+
+            bot_choice = random.choice(available_choices)
+            print("Bot Choice:", bot_choice)
+            match_input(bot_choice, 0)
+            win_conditioner()
+
+        
+        elif player_side == 'O':
+            bot_choice = random.choice(available_choices)
+            print("Bot Choice:", bot_choice)
+            match_input(bot_choice, 1)
+            win_conditioner()
+
+            print("Current Board")
+            print(board[0])
+            print(board[1])
+            print(board[2])
+
+            print("")
+
+            o_input = int(input("Player O Input: "))
+            while o_input not in available_choices and game_over == False:
+                o_input = int(input("Option already taken, try another: "))
+
+            match_input(o_input, 0)
+            win_conditioner()
 
     print("")
 
@@ -204,12 +246,10 @@ while game_over == False:
 
     print("")
 
-    win_conditioner()
+
 
 
 '''
-win_conditioner()
-
 
 print(win_con_one)
 
