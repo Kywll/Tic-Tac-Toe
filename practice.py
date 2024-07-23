@@ -40,8 +40,11 @@ x_input = None
 o_input = None
 
 available_choices = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-player_side = None
-versus_bot = False
+
+player_side = 'X'
+versus_bot = True
+bot_choice = None
+
 
 def match_input(num, xo):
     if xo == 1:
@@ -105,47 +108,12 @@ def match_input(num, xo):
         else:
             pass
 
-
-
-#Bot Algo
-#Choose wether Bot is X or O
-#Make Bot Choose between 1-9
-#Make sure bot dont choose occupied spaces in board
-#Translate Bot Choices
-#Output if Bot Won
-
-def bot():
-    player_side = None
-
-    
-    
-    bot_enabled = False
-    bot_side = None
-    bot_choice = random.choice(available_choices)
-
-
-    choice_one = None
-    choice_two = None
-    choice_three = None
-    choice_four = None
-    choice_five = None
-    choice_six = None
-    choice_seven = None
-    choice_eight = None
-    choice_nine = None
-
-    
-    
-    
-
-
-
 #Used to compare if a row of list has all X or O
 X = ['X', 'X', 'X']
 O = ['O', 'O', 'O']
 
-
 def win_conditioner():
+    out_of_moves = {}
     global game_over
     win_con_one = [board[0][0], board[0][1], board[0][2]]
     win_con_two = [board[1][0], board[1][1], board[1][2]]
@@ -181,8 +149,30 @@ def win_conditioner():
     elif o1 == False or o2 == False or o3 == False or o4 == False or o5 == False or o6 == False or o7 == False or o8 == False:
         print("O WON")
         game_over = True
+    
+    if available_choices == out_of_moves:
+        game_over = True
+        print("DRAW")
 
-        
+#Bot Algo
+#Choose wether Bot is X or O
+#Make Bot Choose between 1-9
+#Make sure bot dont choose occupied spaces in board
+#Translate Bot Choices
+#Output if Bot Won
+
+#Make Bot stop a winning move
+#Make Bot go for a winning move
+
+#Make Bot Choose the best moves
+
+def bot():
+    bot_choice = random.choice(available_choices)
+    print("Bot Choice:", bot_choice)
+
+    return bot_choice
+
+
 while game_over == False:
     if versus_bot == False:
         x_input = int(input("Player X Input: "))
@@ -211,17 +201,13 @@ while game_over == False:
 
             match_input(x_input, 1)
             win_conditioner()
-
-            bot_choice = random.choice(available_choices)
-            print("Bot Choice:", bot_choice)
-            match_input(bot_choice, 0)
+            
+            match_input(bot(), 0)
             win_conditioner()
 
         
         elif player_side == 'O':
-            bot_choice = random.choice(available_choices)
-            print("Bot Choice:", bot_choice)
-            match_input(bot_choice, 1)
+            match_input(bot(), 1)
             win_conditioner()
 
             print("Current Board")
@@ -237,6 +223,7 @@ while game_over == False:
 
             match_input(o_input, 0)
             win_conditioner()
+    
 
     print("")
 
@@ -247,10 +234,12 @@ while game_over == False:
 
     print("")
 
-
+    
 
 
 '''
+win_conditioner()
+
 
 print(win_con_one)
 
