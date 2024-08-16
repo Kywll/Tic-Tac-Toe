@@ -40,7 +40,6 @@ x_input = None
 o_input = None
 
 available_choices = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-bot_available_choices = available_choices
 
 player_side = 'X'
 bot_side = None
@@ -50,7 +49,6 @@ else:
     bot_side = 'X'
 
 versus_bot = True
-bot_choice = random.choice(bot_available_choices)
 
 
 
@@ -70,180 +68,63 @@ def print_board(first, second):
     
 def match_input(num, xo, is_bot):
     bot = is_bot
-    test_choice = bot_choice
-
-    if xo == 1:
-        if num == 1:
-            board[0][0] = 'X'
-            if bot != 1:
-                available_choices.remove(1)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[0][0] = None
-        elif num == 2:
-            board[0][1] = 'X'
-            if bot != 1:
-                available_choices.remove(2)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[0][1] = None
-        elif num == 3:
-            board[0][2] = 'X'
-            if bot != 1:
-                available_choices.remove(3)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[0][2] = None
-        elif num == 4:
-            board[1][0] = 'X'
-            if bot != 1:
-                available_choices.remove(4)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[1][0] = None
-        elif num == 5:
-            board[1][1] = 'X'
-            if bot != 1:
-                available_choices.remove(5)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[1][1] = None
-        elif num == 6:
-            board[1][2] = 'X'
-            if bot != 1:
-                available_choices.remove(6)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[1][2] = None
-        elif num == 7:
-            board[2][0] = 'X'
-            if bot != 1:
-                available_choices.remove(7)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[2][0] = None
-        elif num == 8:
-            board[2][1] = 'X'
-            if bot != 1:
-                available_choices.remove(8)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[2][1] = None
-        elif num == 9:
-            board[2][2] = 'X'
-            if bot != 1:
-                available_choices.remove(9)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[2][2] = None
-        else:
-            pass
-
-    elif xo == 0:
-        if num == 1:
-            board[0][0] = 'O'
-            if bot != 1:
-                available_choices.remove(1)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[0][0] = None
-        elif num == 2:
-            board[0][1] = 'O'
-            if bot != 1:
-                available_choices.remove(2)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[0][1] = None
-        elif num == 3:
-            board[0][2] = 'O'
-            if bot != 1:
-                available_choices.remove(3)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[0][2] = None
-        elif num == 4:
-            board[1][0] = 'O'
-            if bot != 1:
-                available_choices.remove(4)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[1][0] = None
-        elif num == 5:
-            board[1][1] = 'O'
-            if bot != 1:
-                available_choices.remove(5)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[1][1] = None
-        elif num == 6:
-            board[1][2] = 'O'
-            if bot != 1:
-                available_choices.remove(6)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[1][2] = None
-        elif num == 7:
-            board[2][0] = 'O'
-            if bot != 1:
-                available_choices.remove(7)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[2][0] = None
-        elif num == 8:
-            board[2][1] = 'O'
-            if bot != 1:
-                available_choices.remove(8)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[2][1] = None
-        elif num == 9:
-            board[2][2] = 'O'
-            if bot != 1:
-                available_choices.remove(9)
-                bot_available_choices.remove(test_choice)
-                test_choice = random.choice(bot_available_choices)
-            else:
-                win_conditioner()
-                board[2][2] = None
-        else:
-            pass
     
-    if bot == 1:
-        bot_move(1)
+    if num == 1:
+        if xo == 'X':
+            board[0][0] = 'X'
+        elif xo == 'O':
+            board[0][0] = 'O'
+        available_choices.remove(1)
+    elif num == 2:
+        if xo == 'X':
+            board[0][1] = 'X'
+        elif xo == 'O':
+            board[0][1] = 'O'
+        available_choices.remove(1)
+    elif num == 3:
+        if xo == 'X':
+            board[0][2] = 'X'
+        elif xo == 'O':
+            board[0][2] = 'O'
+        available_choices.remove(1)
+    elif num == 4:
+        if xo == 'X':
+            board[1][0] = 'X'
+        elif xo == 'O':
+            board[1][0] = 'O'
+        available_choices.remove(1)
+    elif num == 5:
+        if xo == 'X':
+            board[1][1] = 'X'
+        elif xo == 'O':
+            board[1][1] = 'O'
+        available_choices.remove(1)
+    elif num == 6:
+        if xo == 'X':
+            board[1][2] = 'X'
+        elif xo == 'O':
+            board[1][2] = 'O'
+        available_choices.remove(1)
+    elif num == 7:
+        if xo == 'X':
+            board[2][0] = 'X'
+        elif xo == 'O':
+            board[2][0] = 'O'
+        available_choices.remove(1)
+    elif num == 8:
+        if xo == 'X':
+            board[2][1] = 'X'
+        elif xo == 'O':
+            board[2][1] = 'O'
+        available_choices.remove(1)
+    elif num == 9:
+        if xo == 'X':
+            board[2][2] = 'X'
+        elif xo == 'O':
+            board[2][2] = 'O'
+        available_choices.remove(1)
+    else:
+        pass
 
 
 #Used to compare if a row of list has all X or O
@@ -314,22 +195,71 @@ def bot_move(correct):
     #if decide = None, then keep choosing random choices
     # if decide = 1, then just choose any random available choice and input it 
 
-    decide = correct
-
+    bot_available_choices = available_choices
+    bot_choice = random.choice(bot_available_choices)
     final_choice = bot_choice
+    test_choice = random.choice(bot_available_choices)
 
     out_of_choices = []
 
+    for i in range(1, int(len(bot_available_choices)) + 1):
+        if bot_choice == 1:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[0][0] = None
+        elif bot_choice == 2:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[0][1] = None
+        elif bot_choice == 3:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[0][2] = None
+        elif bot_choice == 4:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[1][0] = None
+        elif bot_choice == 5:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[1][1] = None
+        elif bot_choice == 6:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[1][2] = None
+        elif bot_choice == 7:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[2][0] = None
+        elif bot_choice == 8:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[2][1] = None
+        elif bot_choice == 9:
+            match_input(test_choice, bot_side, 0)
+            win_conditioner()
+            bot_available_choices.remove(test_choice)
+            test_choice = random.choice(bot_available_choices)
+            board[2][2] = None
 
-
-    if bot_available_choices == out_of_choices:
-        pass
-    else:
-        #match_input(bot_choice, bot_side, 1)
-        pass
-
-    
-
+    bot_available_choices = available_choices
+    final_choice = random.choice(bot_available_choices)
     
     return final_choice
 
@@ -339,7 +269,7 @@ while game_over == False:
         while x_input not in available_choices:
              x_input = int(input("Option already taken, try another: "))
              
-        match_input(x_input, 1, 0)
+        match_input(x_input, 'X', 0)
 
         win_conditioner()
         
@@ -349,7 +279,7 @@ while game_over == False:
             while o_input not in available_choices and game_over == False:
                 o_input = int(input("Option already taken, try another: "))
                 
-        match_input(o_input, 0, 0)
+        match_input(o_input, 'O', 0)
     
         win_conditioner()
 
@@ -359,15 +289,15 @@ while game_over == False:
             while x_input not in available_choices:
                 x_input = int(input("Option already taken, try another: "))
 
-            match_input(x_input, 1, 0)
+            match_input(x_input, player_side, 0)
             win_conditioner()
             
-            match_input(bot_move(0), 0, 0)
+            match_input(bot_move(0), bot_side, 0)
             win_conditioner()
 
         
         elif player_side == 'O':
-            match_input(bot_move(0), 1, 0)
+            match_input(bot_move(0), bot_side, 0)
             win_conditioner()
 
             print_board(0, 1)
@@ -376,7 +306,7 @@ while game_over == False:
             while o_input not in available_choices and game_over == False:
                 o_input = int(input("Option already taken, try another: "))
 
-            match_input(o_input, 0, 0)
+            match_input(o_input, player_side, 0)
             win_conditioner()
     
 
