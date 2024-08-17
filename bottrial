@@ -191,7 +191,7 @@ def win_conditioner(true_false):
     o7 = any(i != j for i, j in zip(O, win_con_seven))
     o8 = any(i != j for i, j in zip(O, win_con_eight))
 
-    
+    bot_checked = False
     if x1 == False or x2 == False or x3 == False or x4 == False or x5 == False or x6 == False or x7 == False or x8 == False:
         if bot_check != 1:
             print("X WON")
@@ -207,8 +207,11 @@ def win_conditioner(true_false):
             bot_checked = True
     
     if available_choices == out_of_moves:
-        game_over = True
-        print("DRAW")
+        if bot_check != 1:
+            game_over = True
+            print("DRAW")
+        else:
+            bot_checked = True
 
 #Bot Algo
 #Choose wether Bot is X or O
@@ -240,6 +243,8 @@ def bot_move():
     for i in range(0, len(bot_available_choices)):
         if game_over == False:
             if bot_available_choices != [] and game_over == False:
+                if game_over == True:
+                    break
                 test_choice = random.choice(bot_available_choices)
                 match_input(test_choice, bot_side, 1)
                 win_conditioner(0)
@@ -265,13 +270,16 @@ def bot_move():
 
 
     #check if opponent is about to win then block it
-    '''
+    
     bot_available_choices = available_choices.copy()
     for i in range(0, len(bot_available_choices)):
         if game_over == False and bot_checked == False:
             if bot_available_choices != [] and game_over == False and bot_checked == False:
+                if game_over == True:
+                    break
                 test_choice = random.choice(bot_available_choices)
                 match_input(test_choice, player_side, 1)
+                print(test_choice)
                 win_conditioner(1)
                 bot_available_choices.remove(test_choice)
             if test_choice == 1 and game_over == False and bot_checked == False:
@@ -292,8 +300,6 @@ def bot_move():
                 board[2][1] = ''
             if test_choice == 9 and game_over == False and bot_checked == False:
                 board[2][2] = ''
-    '''
-    
 
     final_choice = test_choice
     print("Bot Choice:", final_choice)
@@ -330,13 +336,15 @@ while game_over == False:
             match_input(x_input, player_side, 0)
             win_conditioner(0)
             
-            match_input(bot_move(), bot_side, 0)
-            win_conditioner(0)
+            if game_over == False:    
+                match_input(bot_move(), bot_side, 0)
+                win_conditioner(0)
 
         
         elif player_side == 'O':
-            match_input(bot_move(), bot_side, 0)
-            win_conditioner(0)
+            if game_over == False:   
+                match_input(bot_move(), bot_side, 0)
+                win_conditioner(0)
 
             print_board(0, 1)
 
