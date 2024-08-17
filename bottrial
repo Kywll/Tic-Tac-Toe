@@ -234,7 +234,7 @@ def bot_move():
             if test_choice == 9 and game_over == False:
                 board[2][2] = ''
 
-    final_choice = random.choice(available_choices)
+    final_choice = test_choice
     print("Bot Choice:", final_choice)
 
     return final_choice
