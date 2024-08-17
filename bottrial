@@ -207,36 +207,36 @@ def bot_move():
     
     test_choice = random.choice(bot_available_choices)
     final_choice = None
-    
-    out_of_choices = []
 
     for i in range(0, len(bot_available_choices)):
-        if bot_available_choices != []:
-            test_choice = random.choice(bot_available_choices)
-            match_input(test_choice, bot_side, 1)
-            win_conditioner()
-            bot_available_choices.remove(test_choice)
-        if test_choice == 1 and game_over == False:
-            board[0][0] = ''
-        if test_choice == 2 and game_over == False:
-            board[0][1] = ''
-        if test_choice == 3 and game_over == False:
-            board[0][2] = ''
-        if test_choice == 4 and game_over == False:
-            board[1][0] = ''
-        if test_choice == 5 and game_over == False:
-            board[1][1] = ''
-        if test_choice == 6 and game_over == False:
-            board[1][2] = ''
-        if test_choice == 7 and game_over == False:
-            board[2][0] = ''
-        if test_choice == 8 and game_over == False:
-            board[2][1] = ''
-        if test_choice == 9 and game_over == False:
-            board[2][2] = ''
+        if game_over == False:
+            if bot_available_choices != [] and game_over == False:
+                test_choice = random.choice(bot_available_choices)
+                match_input(test_choice, bot_side, 1)
+                win_conditioner()
+                bot_available_choices.remove(test_choice)
+            if test_choice == 1 and game_over == False:
+                board[0][0] = ''
+            if test_choice == 2 and game_over == False:
+                board[0][1] = ''
+            if test_choice == 3 and game_over == False:
+                board[0][2] = ''
+            if test_choice == 4 and game_over == False:
+                board[1][0] = ''
+            if test_choice == 5 and game_over == False:
+                board[1][1] = ''
+            if test_choice == 6 and game_over == False:
+                board[1][2] = ''
+            if test_choice == 7 and game_over == False:
+                board[2][0] = ''
+            if test_choice == 8 and game_over == False:
+                board[2][1] = ''
+            if test_choice == 9 and game_over == False:
+                board[2][2] = ''
 
     final_choice = random.choice(available_choices)
-    
+    print("Bot Choice:", final_choice)
+
     return final_choice
     
 
@@ -311,6 +311,3 @@ combine = set(board[0]).intersection(X)
 print(combine)
 
 '''
-
-
-
