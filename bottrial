@@ -41,7 +41,7 @@ o_input = None
 
 available_choices = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-versus_bot = True
+versus_bot = False
 
 player_side = 'X'
 bot_side = None
@@ -50,52 +50,58 @@ bot_checked = False
 
 
 #To be fixed soon
-smarty_bot = False
 simulation = False
+smarty_bot = False
+done = False
 
+start_input = ''
 
 #Make a Simulation
-'''
-while simulation != True or simulation != "No":
-    smarty_bot = input("Type ''Yes'' or ''No'' if you want to play against a smart bot: ")
-    if simulation == "Yes":
-        simulation == True
-    elif simulation == "No":
-        simulation == "No"
-
-while versus_bot != True:
-    versus_bot = input("Type ''Yes'' or ''No'' if you want to play against a bot: ")
-    if versus_bot == "Yes":
-        versus_bot = True
-
-if versus_bot == True:
-    while player_side != 1 or player_side != 0:
-        player_side = input("Type ''X'' or ''O'' to choose a side: ")
-        if player_side == "X":
-            player_side == 'X'
-        elif player_side == "O":
-            player_side == 'O'
-    
-    while smarty_bot != True or smarty_bot != "No":
-        smarty_bot = input("Type ''Yes'' or ''No'' if you want to play against a smart bot: ")
-        if smarty_bot == "Yes":
-            smarty_bot == True
-        elif smarty_bot == "No":
-            smarty_bot == "No"
-'''
 
 
-if player_side == 'X':
-    player_side == 'X'
-    bot_side = 'O'
-elif player_side == 'O':
-    player_side == 'O'
-    bot_side = 'X'
+if done == False:
+    while start_input not in ('Y', 'N'):
+        start_input = input("Type 'Y/N' for yes or no if you want to play a simulated bot match: ")
+        if start_input == 'Y':
+            simulation = True
+        elif start_input == 'N':
+            simulation = False
+    start_input = ''
 
+    if simulation != True:
+        while start_input not in ('Y', 'N'):
+            start_input = input("Type 'Y/N' for yes or no if you want to play against a bot: ")
+            if start_input == 'Y':
+                versus_bot = True
+            elif start_input == 'N':
+                versus_bot = False
+        start_input = ''
+
+        if versus_bot == True:
+            while start_input not in ('X', 'O'):
+                start_input = input("Type ''X'' or ''O'' to choose a side: ")
+                if start_input == 'X':
+                    player_side = 'X'
+                    bot_side = 'O'
+                elif start_input == 'O':
+                    player_side = 'O'
+                    bot_side = 'X'
+            start_input = ''
+            
+            while start_input not in ('Y', 'N'):
+                start_input = input("Type 'Y/N' for yes or no if you want to play against a smart bot: ")
+                if start_input == 'Y':
+                    smarty_bot = True
+                elif start_input == 'N':
+                    smarty_bot = False
+            start_input = ''
+
+    done = True
 
 
 def print_board(first, second):
     #Prints Current Board
+    
     if first == 1:
         print("")
     
@@ -367,7 +373,20 @@ def bot_move():
 
 
 while game_over == False:
-    if versus_bot == False:
+    
+    if simulation == True:
+        #Make a bot_move(smart) to determine if the bot is smart or not
+        if game_over == False:
+            match_input(bot_move(), 'X', 0)
+            win_conditioner(0)
+            print_board(1, 1)
+
+            match_input(bot_move(), 'O', 0)
+            win_conditioner(0)
+            print_board(1, 1)
+        
+        
+    if versus_bot == False and simulation == False:
         x_input = int(input("Player X Input: "))
         while x_input not in available_choices:
              x_input = int(input("Option already taken, try another: "))
@@ -385,8 +404,8 @@ while game_over == False:
         match_input(o_input, 'O', 0)
     
         win_conditioner(0)
-
-    elif versus_bot == True:
+    
+    elif versus_bot == True and simulation == False:
         if player_side == 'X':
             x_input = int(input("Player X Input: "))
             while x_input not in available_choices:
@@ -414,7 +433,8 @@ while game_over == False:
             match_input(o_input, player_side, 0)
             win_conditioner(0)
     
-    print_board(1, 1)
+    if simulation == False:
+        print_board(1, 1)
 
     
 
