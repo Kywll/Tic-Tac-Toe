@@ -51,7 +51,7 @@ bot_checked = False
 
 #To be fixed soon
 simulation = False
-smarty_bot = False
+smart_bot = False
 done = False
 
 start_input = ''
@@ -76,7 +76,7 @@ if done == False:
             elif start_input == 'N':
                 versus_bot = False
         start_input = ''
-
+    
         if versus_bot == True:
             while start_input not in ('X', 'O'):
                 start_input = input("Type ''X'' or ''O'' to choose a side: ")
@@ -88,13 +88,14 @@ if done == False:
                     bot_side = 'X'
             start_input = ''
             
-            while start_input not in ('Y', 'N'):
-                start_input = input("Type 'Y/N' for yes or no if you want to play against a smart bot: ")
-                if start_input == 'Y':
-                    smarty_bot = True
-                elif start_input == 'N':
-                    smarty_bot = False
-            start_input = ''
+    if simulation == True or versus_bot == True:
+        while start_input not in ('Y', 'N'):
+            start_input = input("Type 'Y/N' for yes or no if you want to play against a smart bot: ")
+            if start_input == 'Y':
+                smart_bot = True
+            elif start_input == 'N':
+                smart_bot = False
+        start_input = ''
 
     done = True
 
@@ -188,7 +189,7 @@ O = ['O', 'O', 'O']
 def win_conditioner(true_false):
     bot_check = true_false
 
-    out_of_moves = {}
+    out_of_moves = []
     global game_over
     global bot_checked
 
@@ -254,7 +255,7 @@ def win_conditioner(true_false):
 
 #Make Bot Choose the best moves
 
-def bot_move():
+def bot_move(smarty_bot):
     #Compare a possible move to winning patterns
     
     
@@ -270,7 +271,7 @@ def bot_move():
     test_choice = random.choice(bot_available_choices)
     final_choice = None
 
-    smart_bot = True
+    smart_bot = smarty_bot
 
     for i in range(0, len(bot_available_choices)):
         if game_over == False:
@@ -377,11 +378,11 @@ while game_over == False:
     if simulation == True:
         #Make a bot_move(smart) to determine if the bot is smart or not
         if game_over == False:
-            match_input(bot_move(), 'X', 0)
+            match_input(bot_move(smart_bot), 'X', 0)
             win_conditioner(0)
             print_board(1, 1)
 
-            match_input(bot_move(), 'O', 0)
+            match_input(bot_move(smart_bot), 'O', 0)
             win_conditioner(0)
             print_board(1, 1)
         
@@ -415,13 +416,13 @@ while game_over == False:
             win_conditioner(0)
             
             if game_over == False:    
-                match_input(bot_move(), bot_side, 0)
+                match_input(bot_move(smart_bot), bot_side, 0)
                 win_conditioner(0)
 
         
         elif player_side == 'O':
             if game_over == False:   
-                match_input(bot_move(), bot_side, 0)
+                match_input(bot_move(smart_bot), bot_side, 0)
                 win_conditioner(0)
 
             print_board(0, 1)
